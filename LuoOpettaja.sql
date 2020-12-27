@@ -1,0 +1,22 @@
+USE [Koulu]
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[Opettaja](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nimi] [nvarchar](50) NOT NULL,
+	[YksikkoId] [int] NOT NULL,
+ CONSTRAINT [PK_Opettaja] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[Opettaja]  WITH CHECK ADD  CONSTRAINT [FK_Opettaja_Koulutusyksikko] FOREIGN KEY([YksikkoId])
+REFERENCES [dbo].[Koulutusyksikko] ([Id])
+
+ALTER TABLE [dbo].[Opettaja] CHECK CONSTRAINT [FK_Opettaja_Koulutusyksikko]
+
+
